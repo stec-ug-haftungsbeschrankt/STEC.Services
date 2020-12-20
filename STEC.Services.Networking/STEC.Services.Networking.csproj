@@ -10,7 +10,7 @@
 	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 	<Version>0.1.1</Version>
 	<RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
-	<PackageLicenseExpression>AGPL-3.0</PackageLicenseExpression>
+	<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
