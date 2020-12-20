@@ -4,6 +4,7 @@ This repository contains Services to be used as building stones for various user
 
 ## Current Services
 
+- STEC.Services.Billing
 - STEC.Services.Mailing
 - STEC.Services.HealthChecks
 - STEC.Services.UserTenants
