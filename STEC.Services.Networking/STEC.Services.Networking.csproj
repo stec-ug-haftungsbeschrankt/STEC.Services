@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Owners>STEC UG (haftungsbeschränkt)</Owners>
+    <Company>STEC UG (haftungsbeschränkt)</Company>
+    <Product>STEC Services Networking</Product>
+    <Authors>Stefan Schick</Authors>
+    <Description>Package with Network Utilities</Description>
+	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	<Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

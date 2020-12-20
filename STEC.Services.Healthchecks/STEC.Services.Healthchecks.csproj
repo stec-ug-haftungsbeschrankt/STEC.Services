@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Owners>STEC UG (haftungsbeschränkt)</Owners>
+    <Company>STEC UG (haftungsbeschränkt)</Company>
+    <Product>STEC Services Healthchecks</Product>
+    <Authors>Stefan Schick</Authors>
+    <Description>Package for Testing Service availability</Description>
+	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	<Version>0.1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+  </ItemGroup>
+</Project>
