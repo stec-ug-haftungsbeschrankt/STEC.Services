@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace STEC.Services.UserTenants
 {
@@ -29,5 +30,24 @@ namespace STEC.Services.UserTenants
             optionsBuilder.ReplaceService<IModelCacheKeyFactory, ApplicationCacheKeyFactory>();
             base.OnConfiguring(optionsBuilder);
         }
+
+        protected override async void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var schema = await _tenantProvider.GetTenantSchema().ConfigureAwait(false);
+            modelBuilder.HasDefaultSchema(schema);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public async Task<Tenant> GetTenant()
+        {
+            return await _tenantProvider.GetTenant().ConfigureAwait(false);
+        }
+
+        public async Task<IList<User>> GetTenantUsers()
+        {
+            var tenant = await _tenantProvider.GetTenant().ConfigureAwait(false);
+            return tenant.Users;
+        }
+
     }
 }
