@@ -8,7 +8,7 @@
     <Authors>Stefan Schick</Authors>
     <Description>Package for Management of Users and Tenants</Description>
 	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
-	<Version>0.1.1</Version>
+	<Version>0.1.2-cachekeyfactory</Version>
 	<RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
 	<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
