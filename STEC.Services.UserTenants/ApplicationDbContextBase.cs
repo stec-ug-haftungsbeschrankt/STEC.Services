@@ -19,7 +19,7 @@ namespace STEC.Services.UserTenants
             }
         }
 
-        public ApplicationDbContextBase(DbContextOptions<ApplicationDbContextBase> options, ITenantProvider tenantProvider) : base(options)
+        public ApplicationDbContextBase(DbContextOptions options, ITenantProvider tenantProvider) : base(options)
         {
             _tenantProvider = tenantProvider;
         }
