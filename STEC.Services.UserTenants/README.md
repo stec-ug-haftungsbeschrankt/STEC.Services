@@ -1,17 +1,34 @@
 # STEC.Services.UserTenants
 
+This package provides multi tenancy bansed on EntityFramework Core. The sharding is done on the table level (schemas are used). It makes the DbContext and the Migrations Schema aware.
+
+To use this package, you have to keep some things in mind:
+
+- Your Database context hs to inherit from ApplicationDbContextBase
+- The constructor should take a ITenantProvider argument and pass it to the base class constructor
+- You schould register each DbSet that has to be schema aware in the OnModelCreating()-Method
+
+```
+// Example Registration
+modelBuilder.ApplyConfiguration(new SchemaEntityConfiguration<ProjectDbModel>(Schema, nameof(Projects)));
+```
+
+
+
 
 ## Database Setup
+
+Database Setup in the Startup.cs
 
 ```
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
+                options.UseNpgsql(
                     Configuration.GetConnectionString("ApplicationDbContext")));
 
             services.AddDbContext<TenantDbContext>(options =>
-                options.UseSqlite(
+                options.UseNpgsql(
                     Configuration.GetConnectionString("TenantDbContext"),
                     b => b.MigrationsAssembly("TaskManagement")
                 )
