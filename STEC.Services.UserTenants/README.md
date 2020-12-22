@@ -4,9 +4,9 @@ This package provides multi tenancy bansed on EntityFramework Core. The sharding
 
 To use this package, you have to keep some things in mind:
 
-- Your Database context hs to inherit from ApplicationDbContextBase
-- The constructor should take a ITenantProvider argument and pass it to the base class constructor
-- You schould register each DbSet that has to be schema aware in the OnModelCreating()-Method
+- Your Database context has to inherit from ApplicationDbContextBase
+- The constructor should take an ITenantProvider argument and pass it to the base class constructor
+- You should register each DbSet that has to be schema aware in the OnModelCreating()-Method
 
 ```
 // Example Registration
