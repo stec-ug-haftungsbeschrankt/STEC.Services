@@ -43,6 +43,7 @@ jobs:
         PROJECT_FILE_PATH: STEC.Services.Billing/STEC.Services.Billing.csproj
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        TAG_FORMAT: billing-v*
 
 
     - name: Publish NuGet STEC.Services.Healthchecks
@@ -52,6 +53,7 @@ jobs:
         PROJECT_FILE_PATH: STEC.Services.Healthchecks/STEC.Services.Healthchecks.csproj
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        TAG_FORMAT: healthchecks-v*
 
 
     - name: Publish NuGet STEC.Services.Mailing
@@ -61,6 +63,7 @@ jobs:
         PROJECT_FILE_PATH: STEC.Services.Mailing/STEC.Services.Mailing.csproj
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        TAG_FORMAT: mailing-v*
 
 
     - name: Publish NuGet STEC.Services.Networking
@@ -70,6 +73,7 @@ jobs:
         PROJECT_FILE_PATH: STEC.Services.Networking/STEC.Services.Networking.csproj
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        TAG_FORMAT: networking-v*
 
 
     - name: Publish NuGet STEC.Services.UserTenants
@@ -79,4 +83,5 @@ jobs:
         PROJECT_FILE_PATH: STEC.Services.UserTenants/STEC.Services.UserTenants.csproj
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        TAG_FORMAT: usertenants-v*
 
