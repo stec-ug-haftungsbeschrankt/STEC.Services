@@ -13,6 +13,16 @@ To use this package, you have to keep some things in mind:
 modelBuilder.ApplyConfiguration(new SchemaEntityConfiguration<ProjectDbModel>(Schema, nameof(Projects)));
 ```
 
+- Migrations need to be adapted. Add the constructor below and use the _schema Variables in the up and down methods
+
+```
+        private string _schema;
+
+        public InitialCreate(ApplicationDbContext _context)
+        {
+            _schema = _context.Schema ?? throw new ArgumentNullException(nameof(_context));
+        }
+```
 
 
 
