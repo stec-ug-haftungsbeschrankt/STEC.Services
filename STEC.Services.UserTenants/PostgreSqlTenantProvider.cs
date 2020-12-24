@@ -44,12 +44,20 @@ namespace STEC.Services.UserTenants
 
         public async Task<Tenant> GetTenant()
         {
-            if (_accessor.HttpContext == null)
+            if (_accessor.HttpContext is null)
             {
+                _logger.LogDebug("HttpContext for GetTenant() is null, unable to determine user.");
                 return null;
             }
 
             var rawUser = await _userManager.GetUserAsync(_accessor.HttpContext?.User).ConfigureAwait(false);
+
+            if (rawUser is null)
+            {
+                _logger.LogDebug("Unable to determine User based on HttpContext. You call this too early, User is not yet signed in.");
+                return null;
+            }
+
             // Reload User to contain Tenant. GetUserAsync does not resolve this one
             var user = _context.Users.Include(u => u.Tenant).SingleOrDefault(u => u.Id == rawUser.Id);
 
@@ -71,6 +79,7 @@ namespace STEC.Services.UserTenants
             if (tenant == null)
             {
                 // FIXME Create new Tenant???
+                _logger.LogError($"Tenant not found for user {user.UserName}");
                 return null;
             }
             return tenant;

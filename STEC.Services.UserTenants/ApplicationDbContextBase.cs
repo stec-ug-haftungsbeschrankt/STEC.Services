@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,6 +32,11 @@ namespace STEC.Services.UserTenants
             optionsBuilder.ReplaceService<IModelCacheKeyFactory, ApplicationCacheKeyFactory>();
             // Used for Migration schema awareness
             optionsBuilder.ReplaceService<IMigrationsAssembly, DbSchemaAwareMigrationAssembly>();
+
+            // Make sure, every Tenant has it's own MigrationHistory table
+            NpgsqlDbContextOptionsBuilder builder = new NpgsqlDbContextOptionsBuilder(optionsBuilder);
+            builder.MigrationsHistoryTable("__EFMigrationsHistory", Schema);
+
             base.OnConfiguring(optionsBuilder);
         }
 
