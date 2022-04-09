@@ -1,6 +1,6 @@
 # STEC Services
 
-This repository contains Services to be used as building stones for various user facing projects.
+This repository contains Services to be used as building blocks for various user facing projects.
 
 ## Current Services
 
