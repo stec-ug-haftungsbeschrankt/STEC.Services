@@ -20,10 +20,10 @@ namespace STEC.Services.UserTenants
 
         public PostgreSqlTenantProvider(IHttpContextAccessor accessor, UserManager<User> userManager, TenantDbContext context, ILogger<PostgreSqlTenantProvider> logger)
         {
-            _context = context;
-            _accessor = accessor;
-            _userManager = userManager;
-            _logger = logger;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _accessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
+            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<string> GetTenantSchema()
@@ -69,7 +69,7 @@ namespace STEC.Services.UserTenants
 
             if (user.Tenant == null)
             {
-                _logger.LogInformation($"Tenant for User {user.UserName} not found");
+                _logger.LogInformation("Tenant for User {Username} not found", user.UserName);
                 return null;
             }
 
@@ -79,7 +79,7 @@ namespace STEC.Services.UserTenants
             if (tenant == null)
             {
                 // FIXME Create new Tenant???
-                _logger.LogError($"Tenant not found for user {user.UserName}");
+                _logger.LogError("Tenant not found for user {Username}", user.UserName);
                 return null;
             }
             return tenant;

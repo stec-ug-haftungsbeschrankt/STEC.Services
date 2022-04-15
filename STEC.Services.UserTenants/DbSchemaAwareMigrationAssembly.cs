@@ -30,6 +30,9 @@ namespace STEC.Services.UserTenants
             if (activeProvider == null)
                 throw new ArgumentNullException(nameof(activeProvider));
 
+            if (migrationClass == null)
+                throw new ArgumentNullException(nameof(migrationClass));
+
             var hasCtorWithSchema = migrationClass
                     .GetConstructor(new[] { typeof(ApplicationDbContextBase) }) != null;
 

@@ -86,30 +86,27 @@ namespace STEC.Services.Networking
 
         public async Task Post(string url, Dictionary<string, string> content, string authentication = null)
         {
-            using (var client = new HttpClient())
+            using var client = new HttpClient();
+
+            try
             {
-                try
-                {
-                    using (var request = new HttpRequestMessage(HttpMethod.Post, url))
-                    {
-                        request.Content = new FormUrlEncodedContent(content);
+                using var request = new HttpRequestMessage(HttpMethod.Post, url);
+                request.Content = new FormUrlEncodedContent(content);
 
-                        var response = await client.SendAsync(request);
-                        response.EnsureSuccessStatusCode();
+                var response = await client.SendAsync(request).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
 
-                        StatusCode = response.StatusCode;
-                        Headers = response.Headers;
-                        Content = response.Content;
-                    }
-                }
-                catch (HttpRequestException e)
+                StatusCode = response.StatusCode;
+                Headers = response.Headers;
+                Content = response.Content;
+            }
+            catch (HttpRequestException e)
+            {
+                Success = false;
+                _logger.LogError("Request exception: {Message}", e.Message);
+                if (e.InnerException != null)
                 {
-                    Success = false;
-                    _logger.LogError($"Request exception: {e.Message}");
-                    if (e.InnerException != null)
-                    {
-                        _logger.LogError(e.InnerException.Message);
-                    }
+                    _logger.LogError("{Message}", e.InnerException.Message);
                 }
             }
         }

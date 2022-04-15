@@ -8,6 +8,9 @@ namespace STEC.Services.UserTenants
     {
         public object Create(DbContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
             if (context is ApplicationDbContextBase)
             {
                 ApplicationDbContextBase myContext = context as ApplicationDbContextBase;

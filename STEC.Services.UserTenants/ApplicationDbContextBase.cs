@@ -11,7 +11,7 @@ namespace STEC.Services.UserTenants
 {
     public class ApplicationDbContextBase : DbContext
     {
-        protected ITenantProvider _tenantProvider;
+        private readonly ITenantProvider _tenantProvider;
 
         public string Schema
         {
@@ -28,13 +28,16 @@ namespace STEC.Services.UserTenants
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (optionsBuilder == null)
+                throw new ArgumentNullException(nameof(optionsBuilder));
+
             // Used for Schema Switch
             optionsBuilder.ReplaceService<IModelCacheKeyFactory, ApplicationCacheKeyFactory>();
             // Used for Migration schema awareness
             optionsBuilder.ReplaceService<IMigrationsAssembly, DbSchemaAwareMigrationAssembly>();
 
             // Make sure, every Tenant has it's own MigrationHistory table
-            NpgsqlDbContextOptionsBuilder builder = new NpgsqlDbContextOptionsBuilder(optionsBuilder);
+            var builder = new NpgsqlDbContextOptionsBuilder(optionsBuilder);
             builder.MigrationsHistoryTable("__EFMigrationsHistory", Schema);
 
             base.OnConfiguring(optionsBuilder);

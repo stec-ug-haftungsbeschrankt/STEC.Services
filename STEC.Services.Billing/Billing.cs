@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -23,7 +24,7 @@ namespace STEC.Services.Billing
 
         private readonly BillingOptions _options;
 
-        public string CreatePaymentIntent(IList<BillingProduct> items)
+        public static string CreatePaymentIntent(IList<BillingProduct> items)
         {
             var paymentIntents = new PaymentIntentService();
 
@@ -37,7 +38,7 @@ namespace STEC.Services.Billing
         }
 
 
-        private int CalculateOrderAmount(IList<BillingProduct> items)
+        private static int CalculateOrderAmount(IList<BillingProduct> items)
         {
             // Replace this constant with a calculation of the order's amount
             // Calculate the order total on the server to prevent
@@ -76,7 +77,7 @@ namespace STEC.Services.Billing
             var stripePrices = priceService.List(priceOptions);
             var stripePrice = stripePrices.SingleOrDefault(x =>
                 x.UnitAmount == product.Price && 
-                x.Currency == product.Currency.ToString().ToLower());
+                x.Currency == product.Currency.ToString().ToUpperInvariant());
 
             if (stripePrice is null)
             {
@@ -87,18 +88,21 @@ namespace STEC.Services.Billing
 
         public bool CreatePrice(string productId, BillingProduct product)
         {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
             var priceOptions = new PriceCreateOptions()
             {
                 Product = productId,
                 UnitAmount = product.Price,
-                Currency = product.Currency.ToString().ToLower()
+                Currency = product.Currency.ToString().ToUpperInvariant()
             };
 
             if (product.IsSubscription)
             {
                 priceOptions.Recurring = new PriceRecurringOptions()
                 {
-                    Interval = product.Subscription.ToString().ToLower(),
+                    Interval = product.Subscription.ToString().ToUpperInvariant(),
                 };
 
                 if (product.HasTrial)
@@ -109,11 +113,14 @@ namespace STEC.Services.Billing
 
             var priceService = new PriceService();
             var stripePrice = priceService.Create(priceOptions);
-            return stripePrice is object;
+            return stripePrice is not null;
         }
 
         public string CreateProduct(BillingProduct product)
         {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
             var productOptions = new ProductCreateOptions()
             {
                 Name = product.Name
