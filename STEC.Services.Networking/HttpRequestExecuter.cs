@@ -19,40 +19,55 @@ namespace STEC.Services.Networking
 
         public bool Success { get; private set;} = true;
 
-                public HttpRequestExecuter(ILogger logger)
+        public HttpRequestExecuter(ILogger logger)
         {
             _logger = logger;
         }
 
         public async Task Get(string url, string username, string password)
         {
+            await Get(new Uri(url), username, password).ConfigureAwait(false);
+        }
+
+        public async Task Get(Uri url, string username, string password)
+        {
             using (var client = HttpClientCreator.GetClient(username, password))
             {
-                await ExecuteGetRequest(client, url);
+                await ExecuteGetRequest(client, url).ConfigureAwait(false);
             };
         }
 
         public async Task Get(string url, string token)
         {
+            await Get(new Uri(url), token).ConfigureAwait(false);
+        }
+
+        public async Task Get(Uri url, string token)
+        {
             using (var client = HttpClientCreator.GetClient(token))
             {
-                await ExecuteGetRequest(client, url);
+                await ExecuteGetRequest(client, url).ConfigureAwait(false);
+            };
+        }
+
+        public async Task Get(Uri url)
+        {
+            using (var client = HttpClientCreator.GetClient())
+            {
+                await ExecuteGetRequest(client, url).ConfigureAwait(false);
             };
         }
 
         public async Task Get(string url)
         {
-            using (var client = HttpClientCreator.GetClient())
-            {
-                await ExecuteGetRequest(client, url);
-            };
+            await Get(new Uri(url)).ConfigureAwait(false);
         }
 
-        private async Task ExecuteGetRequest(HttpClient client, string url)
+        private async Task ExecuteGetRequest(HttpClient client, Uri url)
         {
             try
             {
-                client.BaseAddress = new Uri(url);
+                client.BaseAddress = url;
 
                 var response = await client.GetAsync("").ConfigureAwait(false);
 
@@ -63,8 +78,8 @@ namespace STEC.Services.Networking
             catch (HttpRequestException e)
             {
                 Success = false;
-                _logger.LogError($"Request exception: {e.Message}");
-                _logger.LogError(e.InnerException.Message);
+                _logger.LogError("Request exception: {Message}", e.Message);
+                _logger.LogError("{Message}", e.InnerException.Message);
             }
         }
 

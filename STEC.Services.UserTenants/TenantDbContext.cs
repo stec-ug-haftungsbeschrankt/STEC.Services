@@ -24,9 +24,9 @@ namespace STEC.Services.UserTenants
         public DbSet<Subscription> Subscriptions { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
         }
 
     }

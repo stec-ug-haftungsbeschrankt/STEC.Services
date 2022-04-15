@@ -47,12 +47,12 @@ namespace STEC.Services.Healthchecks
             }
             catch (PingException exception)
             {
-                _logger.LogWarning($"{MethodInfo.GetCurrentMethod().Name}: {url} - Message :{exception.Message}");
+                _logger.LogWarning("{Method}: {Url} - Message :{Message}", MethodBase.GetCurrentMethod().Name, url, exception.Message);
                 return Result.Fail;
             }
             catch (SocketException exception)
             {
-                _logger.LogWarning($"{MethodInfo.GetCurrentMethod().Name}: {url} - Message :{exception.Message}");
+                _logger.LogWarning("{Method}: {Url} - Message :{Message}", MethodBase.GetCurrentMethod().Name, url, exception.Message);
                 return Result.Fail;
             }
         }
@@ -80,7 +80,7 @@ namespace STEC.Services.Healthchecks
             }
             catch(HttpRequestException exception)
             {
-                _logger.LogWarning($"{MethodInfo.GetCurrentMethod().Name}: {url} - Message :{exception.Message}");
+                _logger.LogWarning("{Method}: {Url} - Message: {Message}", MethodInfo.GetCurrentMethod().Name, url, exception.Message);
                 return Result.Fail;
             }
         }

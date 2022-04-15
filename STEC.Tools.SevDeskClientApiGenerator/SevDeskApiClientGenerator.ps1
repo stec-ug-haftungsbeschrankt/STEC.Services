@@ -5,7 +5,7 @@
 
 # Install
 # Github Repository https://github.com/OpenAPITools/openapi-generator
-Invoke-WebRequest -OutFile openapi-generator-cli.jar https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0-beta3/openapi-generator-cli-5.0.0-beta3.jar
+Invoke-WebRequest -OutFile openapi-generator-cli.jar https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar
 java -jar openapi-generator-cli.jar help 
  
 # API Dokumentation https://hilfe.sevdesk.de/knowledge/sevdesk-rest-full-api 

@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Owners>STEC UG (haftungsbeschränkt)</Owners>
     <Company>STEC UG (haftungsbeschränkt)</Company>
     <Product>STEC Services Networking</Product>
     <Authors>Stefan Schick</Authors>
     <Description>Package with Network Utilities</Description>
-	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
-	<Version>0.1.1</Version>
-	<RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
-	<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	  <Version>0.1.2</Version>
+	  <RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
+	  <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

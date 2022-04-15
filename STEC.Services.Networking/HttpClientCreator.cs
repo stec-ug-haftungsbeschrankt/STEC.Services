@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace STEC.Services.Networking
 {
-    public class HttpClientCreator
+    public static class HttpClientCreator
     {
         // No auth
         public static HttpClient GetClient()
@@ -20,25 +20,27 @@ namespace STEC.Services.Networking
         // Basic auth
         public static HttpClient GetClient(string username, string password)
         {
-                var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}")));
+            var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}")));
 
-                var client = new HttpClient(){
-                    DefaultRequestHeaders = { Authorization = authValue}
-                    //Set some other client defaults like timeout / BaseAddress
-                };
-                return client;
+            var client = new HttpClient()
+            {
+                DefaultRequestHeaders = { Authorization = authValue }
+                //Set some other client defaults like timeout / BaseAddress
+            };
+            return client;
         }
 
         // Auth with bearer token
         public static HttpClient GetClient(string token)
         {
-                var authValue = new AuthenticationHeaderValue("Bearer", token);
+            var authValue = new AuthenticationHeaderValue("Bearer", token);
 
-                var client = new HttpClient(){
-                    DefaultRequestHeaders = { Authorization = authValue}
-                    //Set some other client defaults like timeout / BaseAddress
-                };
-                return client;
+            var client = new HttpClient()
+            {
+                DefaultRequestHeaders = { Authorization = authValue }
+                //Set some other client defaults like timeout / BaseAddress
+            };
+            return client;
         }
     }
 }

@@ -1,22 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Owners>STEC UG (haftungsbeschränkt)</Owners>
     <Company>STEC UG (haftungsbeschränkt)</Company>
     <Product>STEC Services Billing</Product>
     <Authors>Stefan Schick</Authors>
     <Description>Package for processing payments and subscriptions</Description>
-	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
-	<Version>0.1.1</Version>
-	<RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
-	<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	  <Version>0.1.2</Version>
+	  <RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
+	  <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
-    <PackageReference Include="Stripe.net" Version="39.29.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="Stripe.net" Version="39.105.0" />
   </ItemGroup>
 
 </Project>

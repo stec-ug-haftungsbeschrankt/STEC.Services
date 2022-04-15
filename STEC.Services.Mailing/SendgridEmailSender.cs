@@ -22,12 +22,12 @@ namespace STEC.Services.Mailing
 
         private readonly AuthMessageSenderOptions _options;
 
-        public Task SendEmailAsync(string email, string subject, string message)
+        public async Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(_options.SendGridKey, subject, message, email);
+            await Execute(_options.SendGridKey, subject, message, email).ConfigureAwait(false);
         }
 
-        public Task Execute(string apiKey, string subject, string message, string email)
+        public async Task<Response> Execute(string apiKey, string subject, string message, string email)
         {
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
@@ -44,8 +44,8 @@ namespace STEC.Services.Mailing
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
             msg.SetClickTracking(false, false);
 
-            _logger.LogInformation($"Sending E-Mail to {email}");
-            return client.SendEmailAsync(msg);
+            _logger.LogInformation("Sending E-Mail to {Email}", email);
+            return await client.SendEmailAsync(msg).ConfigureAwait(false);
         }
     }
 }

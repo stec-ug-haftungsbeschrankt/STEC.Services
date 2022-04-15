@@ -28,7 +28,7 @@ namespace STEC.Services.Mailing
 
         private readonly SmtpOptions _options;
 
-        private SmtpClient InitializeSmtpClient(SmtpOptions options)
+        private static SmtpClient InitializeSmtpClient(SmtpOptions options)
         {
             return new SmtpClient(options.Host)
             {
@@ -63,7 +63,7 @@ namespace STEC.Services.Mailing
             // Note: only needed if the SMTP server requires authentication
             await client.AuthenticateAsync(_options.Username, _options.Password).ConfigureAwait(false);
 
-            _logger.LogInformation($"Sending E-Mail to {email}");
+            _logger.LogInformation("Sending E-Mail to {Email}", email);
             await client.SendAsync(mailMessage).ConfigureAwait(false);
             await client.DisconnectAsync(true).ConfigureAwait(false);
         }
@@ -74,8 +74,8 @@ namespace STEC.Services.Mailing
          */
         private bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            _logger.LogInformation($"Certificate Subject: {certificate.Subject}");
-            _logger.LogInformation($"Certificate Issuer: {certificate.Issuer}");
+            _logger.LogInformation("Certificate Subject: {Subject}", certificate.Subject);
+            _logger.LogInformation("Certificate Issuer: {Issuer}", certificate.Issuer);
 
             return true; // Accept everything
         }
@@ -98,7 +98,7 @@ namespace STEC.Services.Mailing
         public async Task ExecuteSmtp(string subject, string message, string email)
         {
             using var smtpClient = InitializeSmtpClient(_options);
-            var mailMessage = new MailMessage
+            using var mailMessage = new MailMessage
             {
                 From = new MailAddress(_options.FromEmail, _options.FromName),
                 Subject = subject,
@@ -107,7 +107,7 @@ namespace STEC.Services.Mailing
             };
             mailMessage.To.Add(email);
 
-            _logger.LogInformation($"Sending E-Mail to {email}");
+            _logger.LogInformation("Sending E-Mail to {Email}", email);
             await smtpClient.SendMailAsync(mailMessage).ConfigureAwait(false);
         }
     }
