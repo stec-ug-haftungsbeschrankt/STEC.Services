@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Owners>STEC UG (haftungsbeschränkt)</Owners>
     <Company>STEC UG (haftungsbeschränkt)</Company>
     <Product>STEC Services Healthchecks</Product>
     <Authors>Stefan Schick</Authors>
     <Description>Package for Testing Service availability</Description>
 	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-	  <Version>0.1.2</Version>
+	  <Version>0.1.3</Version>
 	  <RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
 	  <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
   </ItemGroup>
 </Project>

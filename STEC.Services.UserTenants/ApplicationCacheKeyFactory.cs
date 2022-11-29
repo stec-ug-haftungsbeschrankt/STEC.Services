@@ -6,7 +6,7 @@ namespace STEC.Services.UserTenants
 {
     public class ApplicationCacheKeyFactory : IModelCacheKeyFactory
     {
-        public object Create(DbContext context)
+        public object Create(DbContext context, bool designTime)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
