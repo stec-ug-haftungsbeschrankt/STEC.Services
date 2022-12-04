@@ -11,11 +11,15 @@
 	  <Version>0.1.4</Version>
 	  <RepositoryUrl>https://github.com/stec-ug-haftungsbeschrankt/STEC.Services</RepositoryUrl>
 	  <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MailKit" Version="3.4.3" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.0" />
     <PackageReference Include="SendGrid" Version="9.28.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Readme.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </Project>
