@@ -37,7 +37,7 @@ jobs:
       run: dotnet restore
 
     - name: Publish NuGet STEC.Services.Billing
-      uses: alirezanet/publish-nuget@v3.0.0
+      uses: alirezanet/publish-nuget@v3.0.4
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: STEC.Services.Billing/STEC.Services.Billing.csproj
@@ -48,7 +48,7 @@ jobs:
 
 
     - name: Publish NuGet STEC.Services.Healthchecks
-      uses: alirezanet/publish-nuget@v3.0.0
+      uses: alirezanet/publish-nuget@v3.0.4
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: STEC.Services.Healthchecks/STEC.Services.Healthchecks.csproj
@@ -59,7 +59,7 @@ jobs:
 
 
     - name: Publish NuGet STEC.Services.Mailing
-      uses: alirezanet/publish-nuget@v3.0.0
+      uses: alirezanet/publish-nuget@v3.0.4
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: STEC.Services.Mailing/STEC.Services.Mailing.csproj
@@ -70,7 +70,7 @@ jobs:
 
 
     - name: Publish NuGet STEC.Services.Networking
-      uses: alirezanet/publish-nuget@v3.0.0
+      uses: alirezanet/publish-nuget@v3.0.4
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: STEC.Services.Networking/STEC.Services.Networking.csproj
@@ -81,7 +81,7 @@ jobs:
 
 
     - name: Publish NuGet STEC.Services.UserTenants
-      uses: alirezanet/publish-nuget@v3.0.0
+      uses: alirezanet/publish-nuget@v3.0.4
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: STEC.Services.UserTenants/STEC.Services.UserTenants.csproj
